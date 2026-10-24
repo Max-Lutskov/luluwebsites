@@ -30,30 +30,30 @@ A new project needs its slug in `SITES` (`scripts/screenshots.py`) and an entry 
 
 The link preview image `public/og.png` comes from `scripts/og.html` (1200x630 screenshot).
 
-## Deploy to Cloudflare Pages (one-time setup)
+## Deploy (Cloudflare Pages, project `lulustudio`)
 
-1. Push this repo to GitHub (e.g. `Max-Lutskov/lulustudio`).
-2. Cloudflare dashboard → **Workers & Pages → Create → Pages → Connect to Git** → pick the repo.
-3. Build settings:
-   - Framework preset: **None**
-   - Build command: `npm run generate`
-   - Build output directory: `.output/public`
-   - Node version comes from `.nvmrc` (22).
-4. **Settings → Variables and Secrets** (Production), both as *Secret*:
+The project was created with wrangler (direct upload), so Cloudflare does **not** build on git push. Deploy from this machine:
+
+```powershell
+npm.cmd run deploy     # generate + wrangler pages deploy → https://lulustudio.pages.dev
+```
+
+`.env` (git-ignored) holds `CLOUDFLARE_API_TOKEN` (Account → Cloudflare Pages: Edit) and `CLOUDFLARE_ACCOUNT_ID`;
+wrangler reads them from the environment, so load them first (PowerShell):
+
+```powershell
+Get-Content .env | Where-Object { $_ -match '^[A-Z_]+=' } | ForEach-Object { $k, $v = $_ -split '=', 2; Set-Item "env:$k" $v }
+```
+
+### One-time setup in the Cloudflare dashboard
+
+1. **Workers & Pages → lulustudio → Custom domains → Set up a custom domain**: `lulustudio.dev`, then `www.lulustudio.dev`.
+   Cloudflare adds the CNAME records itself. **Don't touch the mail records** (MX `mx.zoho.eu`/`mx2`/`mx3`,
+   SPF TXT, `zmail._domainkey`, `_dmarc`, `zoho-verification`); cancel if it offers to delete MX or TXT.
+2. Zone `lulustudio.dev` → **Rules → Redirect Rules → Create from template "Redirect from WWW to root"** (301).
+3. **lulustudio → Settings → Variables and Secrets** (Production), both as *Secret*, then run `npm.cmd run deploy` again:
    - `TELEGRAM_BOT_TOKEN`: from @BotFather
    - `TELEGRAM_CHAT_ID`: write to the bot, then open `https://api.telegram.org/bot<TOKEN>/getUpdates` and take `chat.id`
-
-   Then **Deployments → Retry deployment** so the function picks them up.
-5. **Custom domains → Set up a custom domain**: `lulustudio.dev`, then again `www.lulustudio.dev`.
-   Cloudflare adds the CNAME records itself. **Don't touch the mail records** (MX `mx.zoho.eu`/`mx2`/`mx3`,
-   SPF TXT, `zmail._domainkey`, `_dmarc`, `zoho-verification`). If Cloudflare offers to delete conflicting
-   records, there must be none for the root and `www`; cancel if it lists MX or TXT.
-6. www → root redirect: zone `lulustudio.dev` → **Rules → Redirect Rules → Create from template
-   "Redirect from WWW to root"** (301, keep the path and query).
-7. Analytics: Pages project → **Metrics → Web Analytics → Enable** (cookieless, the privacy note in the footer counts on it).
-8. Check:
-   - `https://lulustudio.dev/` opens, `https://www.lulustudio.dev/` redirects to it;
-   - send a test message through the form, it arrives in Telegram and the page shows "Message sent";
-   - mail still works: send an email to max@lulustudio.dev and reply from it.
-
-After that every push to `main` deploys automatically; other branches get preview URLs.
+4. **lulustudio → Metrics → Web Analytics → Enable** (cookieless, the privacy note in the footer counts on it).
+5. Check: `https://lulustudio.dev/` opens, `www` redirects, a test form message arrives in Telegram,
+   and mail still works (send to max@lulustudio.dev and reply).

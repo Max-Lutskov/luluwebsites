@@ -8,7 +8,8 @@
     "preview": "wrangler pages dev .output/public",
     "typecheck": "nuxt typecheck",
     "postinstall": "nuxt prepare",
-    "images": "node scripts/optimize-images.mjs"
+    "images": "node scripts/optimize-images.mjs",
+    "deploy": "npm run generate && wrangler pages deploy .output/public --project-name lulustudio --branch main"
   },
   "dependencies": {
     "@nuxt/fonts": "^1.1.0",
