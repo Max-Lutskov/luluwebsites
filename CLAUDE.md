@@ -16,7 +16,7 @@ Talk to Max in **Ukrainian**. Code, comments, commits and all site copy are in *
   The form is a plain POST to `functions/api/contact.ts` (Cloudflare Pages Function → Telegram) → redirect to `/thanks/` or `/not-sent/`.
 - Fonts via `@nuxt/fonts` (self-hosted): Bricolage Grotesque 700 (headings), Public Sans 400/600 (text).
 - `scripts/after-generate.mjs` copies `/not-found/` to `404.html` and removes the SPA `200.html`.
-- Hosting: Cloudflare Pages from GitHub, build `npm run generate`, output `.output/public`. Setup steps in README.
+- Hosting: Cloudflare Pages project `lulustudio` (direct upload, no git builds): `npm run deploy` with `.env` loaded. Dashboard steps in README.
 - Skills in `.claude/skills/` (copied from Max's other projects). Use them.
 - Windows: `npm.cmd` / `npx.cmd` in PowerShell.
 
