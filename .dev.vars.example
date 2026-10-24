@@ -1,0 +1,6 @@
+# Copy to .dev.vars for `npm run preview` (wrangler pages dev). .dev.vars is git-ignored.
+# On Cloudflare set the same names in Pages → Settings → Variables and Secrets.
+# Bot token from @BotFather
+TELEGRAM_BOT_TOKEN=
+# Chat id that gets the messages (write to the bot, then open https://api.telegram.org/bot<TOKEN>/getUpdates)
+TELEGRAM_CHAT_ID=

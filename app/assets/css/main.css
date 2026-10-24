@@ -1,0 +1,206 @@
+/* Tokens. "Before → After": deep night-blue sections with signal yellow (the colour of the sweep line
+   that turns a broken site into a new one), alternating with cool light sections.
+   Sections pick a theme with .on-night / .on-paper / .on-white; components use --bg/--fg/--fg-muted/--rule. */
+:root {
+  --night: #0d1530;
+  --night-raised: #18224a;
+  --signal: #ffd23f;
+  --signal-dark: #f2bd00;
+  --paper: #f4f5f8;
+  --white: #ffffff;
+  --ink: #0d1530;
+  --ink-muted: #4a5470;
+  --ink-rule: #d6dae4;
+  --night-fg: #eef1f8;
+  --night-muted: #aab3cc;
+  --night-rule: rgb(255 255 255 / 0.14);
+
+  --font-display: 'Bricolage Grotesque', 'Arial Narrow', sans-serif;
+  --font-text: 'Public Sans', system-ui, sans-serif;
+
+  --gutter: 16px;
+  --max: 74rem;
+  --radius: 12px;
+}
+
+@media (min-width: 640px) {
+  :root { --gutter: 32px; }
+}
+
+.on-night {
+  --bg: var(--night);
+  --fg: var(--night-fg);
+  --fg-muted: var(--night-muted);
+  --rule: var(--night-rule);
+  --link: var(--signal);
+}
+
+.on-paper,
+.on-white {
+  --bg: var(--paper);
+  --fg: var(--ink);
+  --fg-muted: var(--ink-muted);
+  --rule: var(--ink-rule);
+  --link: #1f3fd1;
+}
+
+.on-white { --bg: var(--white); }
+
+.on-night,
+.on-paper,
+.on-white {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  margin: 0;
+  background: var(--night);
+  color: var(--night-fg);
+  font-family: var(--font-text);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+h2 {
+  font-size: clamp(2.25rem, 5.5vw, 3.75rem);
+}
+
+h3 {
+  font-size: 1.5rem;
+  letter-spacing: -0.015em;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--link, var(--signal));
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--signal);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.on-paper :focus-visible,
+.on-white :focus-visible {
+  outline-color: #1f3fd1;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.wrap {
+  width: 100%;
+  max-width: calc(var(--max) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: clamp(4.5rem, 10vw, 8rem);
+}
+
+.lead {
+  max-width: 38rem;
+  margin-top: 1.25rem;
+  color: var(--fg-muted);
+  font-size: 1.1875rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.5rem;
+  padding: 0.8rem 1.6rem;
+  border: 2px solid var(--signal);
+  border-radius: 999px;
+  background: var(--signal);
+  color: var(--ink);
+  font: 600 1.0625rem/1.2 var(--font-text);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s, transform 0.15s;
+}
+
+.button:hover {
+  border-color: var(--signal-dark);
+  background: var(--signal-dark);
+  color: var(--ink);
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.button--plain {
+  border-color: var(--rule);
+  background: transparent;
+  color: var(--fg);
+}
+
+.button--plain:hover {
+  border-color: var(--fg);
+  background: transparent;
+  color: var(--fg);
+}
+
+.chip {
+  display: inline-block;
+  padding: 0.15rem 0.7rem;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

@@ -1,0 +1,25 @@
+{
+  "name": "lulustudio",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt dev",
+    "generate": "nuxt generate && node scripts/after-generate.mjs",
+    "preview": "wrangler pages dev .output/public",
+    "typecheck": "nuxt typecheck",
+    "postinstall": "nuxt prepare",
+    "images": "node scripts/optimize-images.mjs"
+  },
+  "dependencies": {
+    "@nuxt/fonts": "^1.1.0",
+    "nuxt": "^4.0.0",
+    "vue": "^3.5.0",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5",
+    "typescript": "^5.8.0",
+    "vue-tsc": "^3.0.0",
+    "wrangler": "^4.151.3"
+  }
+}
