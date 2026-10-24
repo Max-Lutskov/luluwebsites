@@ -12,7 +12,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: 'en' },
-      meta: [{ name: 'theme-color', content: '#0d1530' }],
+      meta: [{ name: 'theme-color', content: '#f3f2ee' }],
       link: [{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }]
     }
   },
@@ -42,8 +42,9 @@ export default defineNuxtConfig({
     },
     // Preloaded: the headline is the largest thing on the first screen (LCP), don't wait for the CSS to find it
     families: [
-      { name: 'Bricolage Grotesque', provider: 'google', weights: [700], preload: true },
-      { name: 'Public Sans', provider: 'google', weights: [400, 600], preload: true }
+      { name: 'Bricolage Grotesque', provider: 'google', weights: [700, 800], preload: true },
+      { name: 'Instrument Sans', provider: 'google', weights: [400, 500, 600], preload: true },
+      { name: 'JetBrains Mono', provider: 'google', weights: [500] }
     ]
   }
 })

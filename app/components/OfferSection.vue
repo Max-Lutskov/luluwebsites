@@ -1,126 +1,78 @@
 <script setup lang="ts">
-import { offer, steps } from '~/data/site'
+import { offer } from '~/data/site'
 </script>
 
 <template>
-  <section class="section on-paper" aria-labelledby="offer-title">
-    <div class="wrap offer">
-      <h2 id="offer-title" class="offer__title">What you get</h2>
-      <ul class="offer__list">
+  <section class="section offer" aria-labelledby="offer-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="offer-title">What every site gets</h2>
+      </div>
+      <!-- 1px dividers: the cells sit on a border-coloured background with a 1px gap -->
+      <ul class="offer__grid">
         <li v-for="item in offer" :key="item.title">
+          <span class="offer__icon"><AppIcon :name="item.icon" :size="22" /></span>
           <h3>{{ item.title }}</h3>
           <p>{{ item.text }}</p>
         </li>
       </ul>
     </div>
   </section>
-
-  <section id="how" class="section on-white" aria-labelledby="how-title">
-    <div class="wrap">
-      <h2 id="how-title">How it works</h2>
-      <ol class="how">
-        <li v-for="(step, i) in steps" :key="step.title">
-          <span class="how__num" aria-hidden="true">{{ i + 1 }}</span>
-          <h3>{{ step.title }}</h3>
-          <p>{{ step.text }}</p>
-        </li>
-      </ol>
-    </div>
-  </section>
 </template>
 
 <style scoped>
 .offer {
-  display: grid;
-  gap: 2.5rem 4rem;
+  padding-bottom: 0;
 }
 
-.offer__list {
+.offer__grid {
   display: grid;
+  gap: 1px;
   margin: 0;
   padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  background: var(--border);
   list-style: none;
 }
 
-.offer__list li {
+.offer__grid li {
   display: grid;
-  gap: 0.25rem 2rem;
-  padding-block: 1.4rem;
-  border-top: 1px solid var(--rule);
+  align-content: start;
+  gap: 0.6rem;
+  padding: clamp(24px, 3vw, 36px);
+  background: var(--card);
 }
 
-.offer__list li:last-child {
-  border-bottom: 1px solid var(--rule);
-}
-
-.offer__list p,
-.how p {
-  color: var(--fg-muted);
-}
-
-.how {
-  position: relative;
-  display: grid;
-  gap: 2.75rem;
-  margin: 3rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.how li {
-  position: relative;
-  display: grid;
-  gap: 0.5rem;
-  max-width: 24rem;
-}
-
-.how__num {
-  position: relative;
-  z-index: 1;
+.offer__icon {
   display: grid;
   place-items: center;
-  width: 3.25rem;
-  height: 3.25rem;
-  margin-bottom: 0.75rem;
-  border-radius: 50%;
-  background: var(--signal);
-  color: var(--ink);
-  font: 700 1.5rem/1 var(--font-display);
+  width: 48px;
+  height: 48px;
+  margin-bottom: 0.6rem;
+  border-radius: 12px;
+  background: var(--navy);
+  color: var(--accent);
 }
 
-@media (min-width: 760px) {
-  .offer__list li {
-    grid-template-columns: 15rem 1fr;
-    align-items: baseline;
+.offer__grid h3 {
+  font-size: 24px;
+}
+
+.offer__grid p {
+  color: var(--muted);
+}
+
+@media (min-width: 640px) {
+  .offer__grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (min-width: 960px) {
-  .offer {
-    grid-template-columns: 1fr 1.75fr;
-    align-items: start;
-  }
-
-  /* The heading stays in view while the list scrolls past */
-  .offer__title {
-    position: sticky;
-    top: 2rem;
-  }
-
-  .how {
+  .offer__grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
-  }
-
-  /* The three steps sit on one line: it's a sequence */
-  .how::before {
-    position: absolute;
-    top: 1.625rem;
-    right: 10%;
-    left: 1.625rem;
-    height: 2px;
-    background: var(--ink);
-    content: '';
   }
 }
 </style>

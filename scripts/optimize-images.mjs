@@ -11,8 +11,7 @@ const OUT = 'public/images/work'
 
 const WIDTHS = {
   desktop: [480, 720, 960, 1440],
-  phone: [240, 390, 780],
-  'desktop-tall': [720, 1080]
+  phone: [240, 390, 780]
 }
 
 await rm(OUT, { recursive: true, force: true })
@@ -20,14 +19,13 @@ await mkdir(OUT, { recursive: true })
 
 let made = 0
 for (const name of await readdir(SRC)) {
-  const match = name.match(/^(.+?)-(desktop|phone|desktop-tall)\.png$/)
+  const match = name.match(/^(.+?)-(desktop|phone)\.png$/)
   if (!match) continue
   const [, slug, view] = match
   for (const w of WIDTHS[view]) {
     await sharp(join(SRC, name))
       .resize({ width: w })
-      // Tall shots load below the fold and move while visible: lower quality isn't noticeable there
-      .webp({ quality: view === 'desktop-tall' ? 60 : 72, effort: 6 })
+      .webp({ quality: 72, effort: 6 })
       .toFile(join(OUT, `${slug}-${view}-${w}.webp`))
     made++
   }

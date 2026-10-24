@@ -46,20 +46,19 @@ All in `app/data/site.ts`.
   DKIM `zmail._domainkey`, DMARC `_dmarc`, `zoho-verification` TXT. Only root + `www` records for the site.
 - Secrets only in `.dev.vars` (git-ignored) and Pages settings. The repo may be public.
 
-## Design ("Before → After", chosen by Max 2026-10-24; the first light/blue version looked like a template)
+## Design (Max's spec, 2026-10-24; replaced the dark "Before → After" version)
 
-- Colours in `main.css`: `night` #0d1530 (dark sections), `signal` #ffd23f (the one accent: buttons, sweep line,
-  "Got an email" band), `paper` #f4f5f8 / white for light sections. Sections set a theme with `.on-night` /
-  `.on-paper` / `.on-white`; components use `--bg/--fg/--fg-muted/--rule`.
-- Fonts: Bricolage Grotesque 700 (headings), Public Sans 400/600 (text), both preloaded.
-- Motion, CSS only, all off with `prefers-reduced-motion`:
-  - the one load animation, `BeforeAfter.vue`: a drawn broken homepage (an illustration, not a real company) is swept
-    by the yellow line into the Ohio concept, then the phone slides in. Don't add other load animations;
-  - `ScrollShot.vue`: in "Recent work" each desktop frame scrolls its site with the page (scroll-driven animation,
-    `overflow: clip` + `min-height: 0` on the screen are required). Browsers without it show the top of the page.
-- Numbers only in "How it works" (a real sequence). No ALL-CAPS labels.
-- Performance now: Lighthouse mobile 99/100/100/100, CLS 0. Lighthouse counts 376 KB because it pulls the lazy work
-  screenshots early; the first screen itself is ~125 KB (HTML, CSS, two fonts, two hero images).
+- Tokens in `main.css`: navy #0d1530 (text, dark blocks, primary buttons), page #f3f2ee, cards #fff, borders
+  #dedbd2 / #cfcbc0, text-2 #3b4260, muted #5a6178, on-navy #c9cee0, accent #ffb23f. **Accent only as a fill**
+  (highlight behind "phone ring.", tags, contact block, "Tap to call"), never as text on a light background.
+- Fonts: Bricolage Grotesque 700/800 (headings, -0.035em), Instrument Sans 400/500/600 (17px body),
+  JetBrains Mono 500 (13px uppercase labels). Radii: cards 28, inputs 12, buttons pills. Touch targets ≥ 44px.
+- Sections: header → hero (+ `PhoneIllustration.vue`, aria-hidden placeholder site) → facts strip → `#email` navy card
+  → `#work` cards → "What every site gets" 3×2 → `#how` 01/02/03 → `#about` → `#contact` accent block → navy footer.
+- **No photo of Max** (his choice): `#about` has a navy 4:5 monogram card in the photo slot.
+- Icons: `AppIcon.vue`, inline Lucide shapes, stroke 1.75. No emoji.
+- Motion: only the "New quote request" card fades in once; off with `prefers-reduced-motion`.
+- Honeypot `fax` sits off-screen (`left: -9999px`), aria-hidden, tabindex -1.
 
 ## Later (not in v1)
 

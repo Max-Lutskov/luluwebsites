@@ -1,92 +1,73 @@
 <script setup lang="ts">
-import { site } from '~/data/site'
+import { facts, site } from '~/data/site'
 </script>
 
 <template>
-  <section class="hero on-night">
+  <section class="hero">
     <div class="wrap hero__grid">
       <div class="hero__text">
-        <!-- Trailing spaces sit inside the spans: Vue drops whitespace between elements on separate lines -->
-        <h1>
-          <span>Websites for </span><span>small businesses </span><span>that bring in calls </span><span>and quote requests.</span>
-        </h1>
-        <p class="hero__who">
+        <p class="label hero__label">One-person web studio · New sites &amp; redesigns</p>
+        <h1>Websites that make your <mark>phone ring.</mark></h1>
+        <p class="lead hero__lead">
           I’m {{ site.owner }}, and LuLu Studio is my one-person web studio.
           I build new sites from scratch and redesign old ones.
         </p>
         <div class="hero__actions">
           <a href="#contact" class="button">Get in touch</a>
-          <a href="#work" class="button button--plain">See my work</a>
+          <a href="#work" class="button button--outline">See my work</a>
         </div>
         <p class="hero__email">
-          Got an email from {{ site.email }}? <a href="#email">Here’s what it was about.</a>
+          <span class="hero__dot" aria-hidden="true" />
+          <a href="#email">Got an email from me? Here’s what it was about <AppIcon name="arrow-right" :size="16" /></a>
         </p>
       </div>
 
-      <BeforeAfter class="hero__visual" />
+      <PhoneIllustration />
     </div>
   </section>
 
-  <section id="email" class="note" aria-labelledby="note-title">
-    <div class="wrap note__grid">
-      <h2 id="note-title" class="note__title">Got an email from me?</h2>
-      <div class="note__body">
-        <p>
-          I look at small business websites. When something on one is broken or slow,
-          I build a free concept of a better homepage from the business’s own photos and text
-          and send it to the owner. That’s the link in my email.
-        </p>
-        <p>
-          The concept costs you nothing and there’s nothing to sign. If you like it, reply to my email.
-          If not, reply “no thanks” and I won’t write again.
-        </p>
+  <section class="facts" aria-label="In short">
+    <dl class="wrap facts__grid">
+      <div v-for="fact in facts" :key="fact.value" class="facts__item">
+        <dt>{{ fact.value }}</dt>
+        <dd>{{ fact.label }}</dd>
       </div>
-    </div>
+    </dl>
   </section>
 </template>
 
 <style scoped>
 .hero {
-  padding-block: clamp(2.5rem, 7vw, 5.5rem) clamp(3.5rem, 8vw, 6rem);
+  padding-block: clamp(48px, 7vw, 96px) clamp(56px, 7vw, 96px);
 }
 
 .hero__grid {
   display: grid;
-  gap: 3.5rem;
+  gap: 3rem;
   align-items: center;
 }
 
+.hero__label {
+  margin-bottom: 1.5rem;
+  color: var(--muted);
+}
+
 h1 {
-  max-width: 18ch;
-  font-size: clamp(2.6rem, 6.6vw, 4.5rem);
-  line-height: 0.98;
-  letter-spacing: -0.035em;
-  text-wrap: pretty;
+  max-width: 11ch;
 }
 
-/* On wide screens one phrase per line; on phones the text just wraps */
-@media (min-width: 960px) {
-  .hero__text {
-    container-type: inline-size;
-  }
-
-  /* The longest phrase ("and quote requests.") is ~9.1 em wide: size the type to the column */
-  h1 {
-    max-width: none;
-    font-size: min(4.75rem, 10.8cqi);
-  }
-
-  h1 span {
-    display: block;
-    white-space: nowrap;
-  }
+/* Accent as a fill behind the words, never as text colour */
+mark {
+  padding: 0 0.08em;
+  border-radius: 0.12em;
+  background: linear-gradient(transparent 52%, var(--accent) 52%, var(--accent) 94%, transparent 94%);
+  color: inherit;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
-.hero__who {
-  max-width: 33rem;
+.hero__lead {
   margin-top: 1.75rem;
-  color: var(--fg-muted);
-  font-size: 1.1875rem;
 }
 
 .hero__actions {
@@ -97,42 +78,69 @@ h1 {
 }
 
 .hero__email {
-  margin-top: 1.5rem;
-  color: var(--fg-muted);
-  font-size: 1rem;
-  overflow-wrap: anywhere;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.75rem;
 }
 
-.note {
-  padding-block: clamp(2.5rem, 6vw, 4rem);
-  background: var(--signal);
-  color: var(--ink);
-  --link: var(--ink);
+.hero__email a {
+  padding-block: 0.6rem;
+  font-weight: 600;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--accent);
 }
 
-.note__grid {
+.hero__email .icon {
+  display: inline;
+  margin-left: 0.2rem;
+  vertical-align: -0.15em;
+}
+
+.hero__dot {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgb(255 178 63 / 0.3);
+}
+
+.facts {
+  border-block: 1px solid var(--border);
+  background: var(--card);
+}
+
+.facts__grid {
   display: grid;
-  gap: 1rem 4rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin-block: 0;
 }
 
-.note__title {
-  font-size: clamp(1.875rem, 4vw, 2.75rem);
-}
-
-.note__body {
+.facts__item {
   display: grid;
-  gap: 0.85rem;
-  max-width: 44rem;
-  font-size: 1.125rem;
+  gap: 0.3rem;
+  padding: 1.75rem 0;
+}
+
+.facts dt {
+  font: 800 30px/1 var(--font-display);
+  letter-spacing: -0.03em;
+}
+
+.facts dd {
+  margin: 0;
+  color: var(--muted);
 }
 
 @media (min-width: 960px) {
   .hero__grid {
-    grid-template-columns: 1.15fr 1fr;
+    grid-template-columns: 1.25fr 1fr;
   }
 
-  .note__grid {
-    grid-template-columns: 1fr 1.6fr;
+  .facts__item + .facts__item {
+    padding-left: 1.75rem;
+    border-left: 1px solid var(--border);
   }
 }
 </style>

@@ -37,8 +37,10 @@ useHead({
 
 <template>
   <HeroSection />
+  <EmailNote />
   <WorkSection />
   <OfferSection />
+  <HowSection />
   <AboutSection />
   <ContactSection />
 </template>

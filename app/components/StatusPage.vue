@@ -6,7 +6,7 @@ useSeoMeta({ title: () => `${props.title} | LuLu Studio`, robots: 'noindex' })
 </script>
 
 <template>
-  <section class="section on-paper">
+  <section class="section">
     <div class="wrap status">
       <h1>{{ title }}</h1>
       <div class="status__body">
@@ -35,7 +35,7 @@ h1 {
   gap: 0.75rem;
   max-width: 36rem;
   margin-bottom: 1rem;
-  color: var(--fg-muted);
+  color: var(--muted);
   font-size: 1.1875rem;
 }
 </style>

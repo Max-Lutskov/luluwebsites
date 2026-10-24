@@ -1,56 +1,30 @@
-/* Tokens. "Before → After": deep night-blue sections with signal yellow (the colour of the sweep line
-   that turns a broken site into a new one), alternating with cool light sections.
-   Sections pick a theme with .on-night / .on-paper / .on-white; components use --bg/--fg/--fg-muted/--rule. */
+/* Tokens. Light warm-grey page, navy ink, one accent (#ffb23f) used only as a fill:
+   the highlight behind "phone ring.", tags, the contact block and the "Tap to call" bar.
+   Never accent text on a light background (contrast). */
 :root {
-  --night: #0d1530;
-  --night-raised: #18224a;
-  --signal: #ffd23f;
-  --signal-dark: #f2bd00;
-  --paper: #f4f5f8;
-  --white: #ffffff;
-  --ink: #0d1530;
-  --ink-muted: #4a5470;
-  --ink-rule: #d6dae4;
-  --night-fg: #eef1f8;
-  --night-muted: #aab3cc;
-  --night-rule: rgb(255 255 255 / 0.14);
+  --navy: #0d1530;
+  --page: #f3f2ee;
+  --card: #ffffff;
+  --border: #dedbd2;
+  --border-strong: #cfcbc0;
+  --text-2: #3b4260;
+  --muted: #5a6178;
+  --on-navy: #c9cee0;
+  --accent: #ffb23f;
 
   --font-display: 'Bricolage Grotesque', 'Arial Narrow', sans-serif;
-  --font-text: 'Public Sans', system-ui, sans-serif;
+  --font-text: 'Instrument Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
-  --gutter: 16px;
-  --max: 74rem;
-  --radius: 12px;
+  --gutter: 24px;
+  --max: 1200px;
+  --space: clamp(80px, 10vw, 120px);
+  --r-card: 28px;
+  --r-input: 12px;
 }
 
-@media (min-width: 640px) {
-  :root { --gutter: 32px; }
-}
-
-.on-night {
-  --bg: var(--night);
-  --fg: var(--night-fg);
-  --fg-muted: var(--night-muted);
-  --rule: var(--night-rule);
-  --link: var(--signal);
-}
-
-.on-paper,
-.on-white {
-  --bg: var(--paper);
-  --fg: var(--ink);
-  --fg-muted: var(--ink-muted);
-  --rule: var(--ink-rule);
-  --link: #1f3fd1;
-}
-
-.on-white { --bg: var(--white); }
-
-.on-night,
-.on-paper,
-.on-white {
-  background: var(--bg);
-  color: var(--fg);
+@media (max-width: 480px) {
+  :root { --gutter: 16px; }
 }
 
 *,
@@ -70,11 +44,11 @@ html {
 
 body {
   margin: 0;
-  background: var(--night);
-  color: var(--night-fg);
+  background: var(--page);
+  color: var(--navy);
   font-family: var(--font-text);
-  font-size: 1.125rem;
-  line-height: 1.6;
+  font-size: 17px;
+  line-height: 1.55;
   text-rendering: optimizeLegibility;
 }
 
@@ -83,20 +57,15 @@ h2,
 h3 {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.025em;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.035em;
   text-wrap: balance;
 }
 
-h2 {
-  font-size: clamp(2.25rem, 5.5vw, 3.75rem);
-}
-
-h3 {
-  font-size: 1.5rem;
-  letter-spacing: -0.015em;
-}
+h1 { font-size: clamp(44px, 6.4vw, 84px); }
+h2 { font-size: clamp(36px, 4.5vw, 60px); }
+h3 { font-weight: 700; }
 
 p {
   margin: 0;
@@ -104,8 +73,8 @@ p {
 }
 
 a {
-  color: var(--link, var(--signal));
-  text-underline-offset: 0.18em;
+  color: inherit;
+  text-underline-offset: 0.2em;
   text-decoration-thickness: 1px;
 }
 
@@ -114,14 +83,9 @@ a:hover {
 }
 
 :focus-visible {
-  outline: 3px solid var(--signal);
+  outline: 3px solid var(--navy);
   outline-offset: 3px;
-  border-radius: 4px;
-}
-
-.on-paper :focus-visible,
-.on-white :focus-visible {
-  outline-color: #1f3fd1;
+  border-radius: 6px;
 }
 
 img {
@@ -138,62 +102,94 @@ img {
 }
 
 .section {
-  padding-block: clamp(4.5rem, 10vw, 8rem);
+  padding-block: var(--space);
+}
+
+.section-head {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: clamp(40px, 5vw, 64px);
+}
+
+.label {
+  font: 500 13px/1.4 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .lead {
-  max-width: 38rem;
-  margin-top: 1.25rem;
-  color: var(--fg-muted);
-  font-size: 1.1875rem;
+  max-width: 36rem;
+  color: var(--text-2);
+  font-size: 19px;
 }
 
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 3.5rem;
-  padding: 0.8rem 1.6rem;
-  border: 2px solid var(--signal);
+  gap: 0.5rem;
+  min-height: 52px;
+  padding: 0.75rem 1.6rem;
+  border: 1.5px solid var(--navy);
   border-radius: 999px;
-  background: var(--signal);
-  color: var(--ink);
-  font: 600 1.0625rem/1.2 var(--font-text);
+  background: var(--navy);
+  color: #fff;
+  font: 600 17px/1.2 var(--font-text);
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.15s, transform 0.15s;
+  transition: background-color 0.15s, color 0.15s, transform 0.15s;
 }
 
 .button:hover {
-  border-color: var(--signal-dark);
-  background: var(--signal-dark);
-  color: var(--ink);
+  background: #1d2a55;
+  color: #fff;
 }
 
 .button:active {
   transform: translateY(1px);
 }
 
-.button--plain {
-  border-color: var(--rule);
+.button--outline {
   background: transparent;
-  color: var(--fg);
+  color: var(--navy);
 }
 
-.button--plain:hover {
-  border-color: var(--fg);
-  background: transparent;
-  color: var(--fg);
+.button--outline:hover {
+  background: var(--card);
+  color: var(--navy);
 }
 
-.chip {
-  display: inline-block;
-  padding: 0.15rem 0.7rem;
-  border: 1.5px solid currentColor;
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 32px;
+  padding: 0.2rem 0.85rem;
+  border: 1.5px solid var(--border-strong);
   border-radius: 999px;
-  font-size: 0.875rem;
+  font-size: 14px;
   font-weight: 600;
-  line-height: 1.5;
+}
+
+.pill--accent {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--navy);
+}
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  background: var(--card);
+}
+
+/* Navy phone frame, used by the hero illustration and the work screenshots */
+.phone-frame {
+  overflow: hidden;
+  border: 7px solid var(--navy);
+  border-radius: 30px;
+  background: var(--navy);
+  box-shadow: 0 24px 48px -24px rgb(13 21 48 / 0.45);
 }
 
 .visually-hidden {
