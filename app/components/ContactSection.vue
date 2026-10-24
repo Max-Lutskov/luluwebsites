@@ -7,10 +7,10 @@ import { site } from '~/data/site'
     <div class="wrap">
       <div class="contact">
         <div class="contact__intro">
-          <h2 id="contact-title">Tell me about your business.</h2>
-          <p>And about your current site, if you have one. I’ll reply by email.</p>
+          <h2 id="contact-title">Tell us about your business.</h2>
+          <p>And about your current site, if you have one. We’ll reply by email.</p>
           <p class="contact__direct">
-            Or email me directly:<br>
+            Or email Max directly:<br>
             <a :href="`mailto:${site.email}`">{{ site.email }}</a>
           </p>
         </div>
@@ -41,7 +41,7 @@ import { site } from '~/data/site'
             <label>Fax <input name="fax" type="text" tabindex="-1" autocomplete="off"></label>
           </div>
           <button type="submit" class="button form__submit">Send message</button>
-          <p class="form__note">I only use these details to reply to you.</p>
+          <p class="form__note">We only use these details to reply to you.</p>
         </form>
       </div>
     </div>

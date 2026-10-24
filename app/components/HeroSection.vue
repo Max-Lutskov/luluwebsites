@@ -6,15 +6,15 @@ import { facts, site } from '~/data/site'
   <section class="hero">
     <div class="wrap hero__grid">
       <div class="hero__text">
-        <p class="label hero__label">One-person web studio · New sites &amp; redesigns</p>
+        <p class="label hero__label">Small web studio · New sites &amp; redesigns</p>
         <h1>Websites that make your <mark>phone ring.</mark></h1>
         <p class="lead hero__lead">
-          I’m {{ site.owner }}, and LuLu Studio is my one-person web studio.
-          I build new sites from scratch and redesign old ones.
+          LuLu Studio is a small web team. We build new sites from scratch and redesign old ones.
+          I’m {{ site.owner }}, the person you’ll talk to.
         </p>
         <div class="hero__actions">
           <a href="#contact" class="button">Get in touch</a>
-          <a href="#work" class="button button--outline">See my work</a>
+          <a href="#work" class="button button--outline">See our work</a>
         </div>
         <p class="hero__email">
           <span class="hero__dot" aria-hidden="true" />

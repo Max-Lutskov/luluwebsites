@@ -5,7 +5,8 @@ import { site } from '~/data/site'
 <template>
   <section id="about" class="section about-section" aria-labelledby="about-title">
     <div class="wrap about">
-      <!-- No photo (Max's choice, 2026-10-24): a monogram card holds the 4:5 slot -->
+      <!-- No photo (Max's choice, 2026-10-24): a monogram card holds the 4:5 slot.
+           Don't invent team size, names or roles: Max only said "a small team" -->
       <div class="about__portrait" aria-hidden="true">
         <span class="about__mono">M</span>
         <span class="label about__place">{{ site.city }}, {{ site.country }}</span>
@@ -14,16 +15,16 @@ import { site } from '~/data/site'
       <div class="about__text">
         <h2 id="about-title">Hi, I’m Max.</h2>
         <p class="about__big">
-          LuLu Studio is just me. The person you email is the person who builds your site.
+          LuLu Studio is a small team, and I’m your one contact from the first email to launch day.
         </p>
         <p>
-          I’m {{ site.owner }}, a web developer in {{ site.city }}, {{ site.country }}.
-          I’ve been building websites for six years. No salespeople and no account managers:
-          you talk to me from the first email to launch day.
+          I’m {{ site.owner }}, a web developer in {{ site.city }}, {{ site.country }},
+          and I’ve been building websites for six years. No salespeople and no account managers:
+          you talk directly to the people who build your site.
         </p>
         <p>
-          I work in English. {{ site.country }} is 7 hours ahead of New York,
-          so your morning is my afternoon.
+          We work in English. {{ site.country }} is 7 hours ahead of New York,
+          so your morning is our afternoon.
         </p>
         <p class="about__links">
           <a class="pill about__pill" :href="`mailto:${site.email}`">

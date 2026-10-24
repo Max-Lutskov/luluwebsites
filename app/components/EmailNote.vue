@@ -4,11 +4,11 @@
       <div class="email__card">
         <div class="email__text">
           <p class="label email__label">Got an email from me?</p>
-          <h2 id="email-title">I made you a homepage. It’s yours to look at — free.</h2>
+          <h2 id="email-title">We made you a homepage. It’s yours to look at — free.</h2>
           <p>
-            I look at small business websites. When something on one is broken or slow,
-            I build a free concept of a better homepage from the business’s own photos and text
-            and send it to the owner. That’s the link in my email. If you like it, reply to my email.
+            We look at small business websites. When something on one is broken or slow,
+            we build a free concept of a better homepage from the business’s own photos and text,
+            and I send it to the owner. That’s the link in my email. If you like it, reply to my email.
           </p>
         </div>
         <ul class="email__points">

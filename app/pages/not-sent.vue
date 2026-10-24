@@ -4,7 +4,7 @@ import { site } from '~/data/site'
 
 <template>
   <StatusPage title="Message not sent">
-    <p>Something went wrong on my side and your message didn’t reach me.</p>
-    <p>Please email me directly at <a :href="`mailto:${site.email}`">{{ site.email }}</a>.</p>
+    <p>Something went wrong on our side and your message didn’t reach us.</p>
+    <p>Please email Max directly at <a :href="`mailto:${site.email}`">{{ site.email }}</a>.</p>
   </StatusPage>
 </template>

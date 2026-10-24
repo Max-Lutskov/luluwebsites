@@ -12,7 +12,7 @@ import { site } from '~/data/site'
       </p>
       <div class="footer__right">
         <p id="privacy">
-          Privacy: the contact form sends me your name, email, website and message, and I use them only
+          Privacy: the contact form sends us your name, email, website and message, and we use them only
           to reply. This site sets no cookies and runs no ad trackers. Visit counts come from
           Cloudflare Web Analytics, which doesn’t use cookies.
         </p>

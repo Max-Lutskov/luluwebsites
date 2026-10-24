@@ -1,6 +1,6 @@
 # CLAUDE.md — lulustudio.dev (studio website)
 
-The site of **LuLu Studio**, Max Lutskov's one-person web studio (Vinnytsia, Ukraine). Readers are owners of small US
+The site of **LuLu Studio**, a small web team run by Max Lutskov (Vinnytsia, Ukraine). Readers are owners of small US
 businesses who got a cold email from `max@lulustudio.dev` (sent by LeadForge, `D:\LuLu-websites`, see its CLAUDE.md)
 and typed the domain to check who wrote. In 10 seconds they must see a real person doing real, good work, and know
 what to do next (reply to the email, or use the form).
@@ -25,6 +25,8 @@ Talk to Max in **Ukrainian**. Code, comments, commits and all site copy are in *
 All in `app/data/site.ts`.
 - Name: LuLu Studio. Email shown: `max@lulustudio.dev` (outreach replies go there too). No photo of Max (his choice).
 - Services: new sites from scratch and redesigns. 6 years building websites. Don't mention his SaaS job.
+- **A small team, not "just me"** (Max, 2026-10-24): "we" for the studio's work, "I" only for Max himself
+  (the emails come from him, he is the client's contact). Don't invent team size, names or roles.
 - Work, exactly these three, labelled honestly:
   - Ohio Transit Company: **Concept** (not commissioned), https://max-lutskov.github.io/Ohio-Demo/
   - Protskov Bud: **Client site**, https://protskovbud.vn.ua/ (repo `D:\Projects`)

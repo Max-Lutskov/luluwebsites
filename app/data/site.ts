@@ -1,5 +1,6 @@
 // All site copy and contact details. Everything here is prospect-facing English.
 // No invented social proof: only facts Max has confirmed (see CLAUDE.md).
+// Voice: "we" for the studio (a small team), "I" only where it's Max himself: the emails come from him.
 
 export const site = {
   name: 'LuLu Studio',
@@ -11,7 +12,7 @@ export const site = {
   github: 'https://github.com/Max-Lutskov',
   title: 'LuLu Studio: websites for small businesses',
   description:
-    'Max Lutskov builds fast, phone-friendly websites for small businesses: new sites and redesigns. If you got an email from max@lulustudio.dev, this is who sent it.'
+    'LuLu Studio is a small team building fast, phone-friendly websites for small businesses: new sites and redesigns. If you got an email from max@lulustudio.dev, this is who sent it.'
 }
 
 /** The strip under the hero. Each one is a fact Max confirmed (2026-10-24) */
@@ -43,7 +44,7 @@ export const works: Work[] = [
     kind: 'Concept',
     niche: 'Trucking',
     location: 'Columbus, Ohio',
-    text: 'A concept homepage built from the company’s own photos and text. It’s the kind of concept I send with my emails. The company didn’t commission it.',
+    text: 'A concept homepage built from the company’s own photos and text. It’s the kind of concept we send with our emails. The company didn’t commission it.',
     url: 'https://max-lutskov.github.io/Ohio-Demo/',
     host: 'max-lutskov.github.io/Ohio-Demo'
   },
@@ -79,9 +80,9 @@ export const offer: { icon: IconName; title: string; text: string }[] = [
 ]
 
 export const steps: { title: string; text: string }[] = [
-  { title: 'I look at your current site', text: 'What’s broken, slow or hard to use on a phone.' },
-  { title: 'I build a free concept', text: 'A new homepage made from your own photos and text, so you see the result before you spend anything.' },
-  { title: 'You decide', text: 'If you want the full site, I send you a fixed price before any work starts. If not, that’s the end of it.' }
+  { title: 'We look at your current site', text: 'What’s broken, slow or hard to use on a phone.' },
+  { title: 'We build a free concept', text: 'A new homepage made from your own photos and text, so you see the result before you spend anything.' },
+  { title: 'You decide', text: 'If you want the full site, we send you a fixed price before any work starts. If not, that’s the end of it.' }
 ]
 
 export type IconName =
