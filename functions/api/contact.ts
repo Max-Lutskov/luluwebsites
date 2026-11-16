@@ -26,8 +26,13 @@ export const onRequestPost = async ({ request, env }: { request: Request; env: E
     return redirect(request, '/not-sent/')
   }
 
+  // The Ukrainian page (/uk/) sends lang=uk: its visitors land on the Ukrainian result pages
+  const base = clean(form.get('lang'), 5) === 'uk' ? '/uk' : ''
+  const sent = `${base}/thanks/`
+  const notSent = `${base}/not-sent/`
+
   // A bot filled in the hidden field: pretend it worked and send nothing
-  if (clean(form.get('fax'), 200)) return redirect(request, '/thanks/')
+  if (clean(form.get('fax'), 200)) return redirect(request, sent)
 
   const name = clean(form.get('name'), 100)
   const email = clean(form.get('email'), 200)
@@ -36,11 +41,11 @@ export const onRequestPost = async ({ request, env }: { request: Request; env: E
 
   // The browser checks these too (required, type=email); this only stops hand-made requests
   if (!name || !message || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return redirect(request, '/not-sent/')
+    return redirect(request, notSent)
   }
 
   const country = (request as Request & { cf?: { country?: string } }).cf?.country
-  const lines = ['<b>New message from lulustudio.dev</b>', `Name: ${escapeHtml(name)}`, `Email: ${escapeHtml(email)}`]
+  const lines = [`<b>New message from lulustudio.dev${base}</b>`, `Name: ${escapeHtml(name)}`, `Email: ${escapeHtml(email)}`]
   if (website) lines.push(`Website: ${escapeHtml(website)}`)
   if (country) lines.push(`Country: ${country}`)
   lines.push('', escapeHtml(message))
@@ -48,7 +53,7 @@ export const onRequestPost = async ({ request, env }: { request: Request; env: E
 
   if (!env.TELEGRAM_BOT_TOKEN || !env.TELEGRAM_CHAT_ID) {
     console.error('[contact] TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID not set, message:\n' + text)
-    return redirect(request, '/not-sent/')
+    return redirect(request, notSent)
   }
 
   const res = await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
@@ -67,7 +72,7 @@ export const onRequestPost = async ({ request, env }: { request: Request; env: E
 
   if (!res?.ok) {
     if (res) console.error('[contact] Telegram answered', res.status, await res.text())
-    return redirect(request, '/not-sent/')
+    return redirect(request, notSent)
   }
-  return redirect(request, '/thanks/')
+  return redirect(request, sent)
 }

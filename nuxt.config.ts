@@ -30,7 +30,7 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'static',
     prerender: {
-      routes: ['/', '/thanks/', '/not-sent/', '/not-found/'],
+      routes: ['/', '/thanks/', '/not-sent/', '/not-found/', '/labs/', '/labs/leadforge/', '/uk/', '/uk/thanks/', '/uk/not-sent/'],
       crawlLinks: false
     }
   },
@@ -44,7 +44,9 @@ export default defineNuxtConfig({
     families: [
       { name: 'Bricolage Grotesque', provider: 'google', weights: [700, 800], preload: true },
       { name: 'Instrument Sans', provider: 'google', weights: [400, 500, 600], preload: true },
-      { name: 'JetBrains Mono', provider: 'google', weights: [500] }
+      { name: 'JetBrains Mono', provider: 'google', weights: [500] },
+      // /uk/ only: the two families above have no Cyrillic
+      { name: 'Onest', provider: 'google', weights: [400, 500, 600, 800], subsets: ['latin', 'cyrillic'] }
     ]
   }
 })

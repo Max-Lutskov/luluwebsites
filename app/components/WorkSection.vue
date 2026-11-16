@@ -144,11 +144,10 @@ import { shotSize, shotSrc, shotSrcset } from '~/utils/img'
   border-radius: 22px;
 }
 
+/* Whole screenshot, no crop: the sites have a fixed bar at the bottom of the phone screen */
 .project__phone img {
   width: 100%;
-  aspect-ratio: 9 / 19;
-  object-fit: cover;
-  object-position: top;
+  height: auto;
 }
 
 .project__text {

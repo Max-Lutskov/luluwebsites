@@ -200,3 +200,17 @@ img {
   clip: rect(0 0 0 0);
   white-space: nowrap;
 }
+
+/* Ukrainian pages (/uk/): Bricolage Grotesque and Instrument Sans have no Cyrillic */
+.uk {
+  --font-display: 'Onest', 'Arial', sans-serif;
+  --font-text: 'Onest', system-ui, sans-serif;
+  font-family: var(--font-text);
+}
+
+.uk h1,
+.uk h2,
+.uk h3 {
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
