@@ -10,6 +10,8 @@
           <li><a href="/#work">Work</a></li>
           <li><a href="/#how">How it works</a></li>
           <li><a href="/#about">About</a></li>
+          <!-- /uk/ is its own page for Ukrainian clients, not a translation: a plain link, no hreflang alternates -->
+          <li class="nav__lang"><a href="/uk/" lang="uk" hreflang="uk">Українською</a></li>
         </ul>
       </nav>
       <a href="/#contact" class="button header__cta">Get in touch</a>
@@ -87,11 +89,22 @@
   font-size: 16px;
 }
 
+/* Four links don't fit one line on a 375px phone: there the language link is in the footer only */
+.nav__lang {
+  display: none;
+}
+
 @media (min-width: 760px) {
   .nav {
     order: 0;
     width: auto;
     margin-left: auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .nav__lang {
+    display: list-item;
   }
 }
 </style>

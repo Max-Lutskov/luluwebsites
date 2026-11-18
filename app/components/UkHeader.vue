@@ -10,6 +10,7 @@
           <li><a href="/uk/#work">Роботи</a></li>
           <li><a href="/uk/#prices">Ціни</a></li>
           <li><a href="/uk/#how">Як працюємо</a></li>
+          <li class="nav__lang"><a href="/" lang="en" hreflang="en">English</a></li>
         </ul>
       </nav>
       <a href="/uk/#contact" class="button header__cta">Написати</a>
@@ -87,11 +88,22 @@
   font-size: 16px;
 }
 
+/* Phones: the language link is in the footer only, same as SiteHeader.vue */
+.nav__lang {
+  display: none;
+}
+
 @media (min-width: 760px) {
   .nav {
     order: 0;
     width: auto;
     margin-left: auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .nav__lang {
+    display: list-item;
   }
 }
 </style>

@@ -17,6 +17,7 @@ import { uk } from '~/data/uk'
           трекерів. Відвідування рахує Cloudflare Web Analytics без cookies.
         </p>
         <p>© 2026 LuLu Studio</p>
+        <p><a class="footer__lang" href="/" lang="en" hreflang="en">English</a></p>
       </div>
     </div>
   </footer>
@@ -45,6 +46,12 @@ import { uk } from '~/data/uk'
   display: grid;
   gap: 1rem;
   max-width: 40rem;
+}
+
+.footer__lang {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 
 @media (min-width: 900px) {

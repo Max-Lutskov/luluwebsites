@@ -17,6 +17,7 @@ import { site } from '~/data/site'
           Cloudflare Web Analytics, which doesn’t use cookies.
         </p>
         <p>© 2026 {{ site.owner }}</p>
+        <p><a class="footer__lang" href="/uk/" lang="uk" hreflang="uk">Українською</a></p>
       </div>
     </div>
   </footer>
@@ -44,6 +45,12 @@ import { site } from '~/data/site'
   display: grid;
   gap: 1rem;
   max-width: 40rem;
+}
+
+.footer__lang {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 
 @media (min-width: 900px) {
