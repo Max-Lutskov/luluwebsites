@@ -26,7 +26,8 @@ export interface UkWork {
   name: string
   kind: string
   niche: string
-  location: string
+  /** Empty for the demo shop: an invented brand has no city */
+  location?: string
   text: string
   url: string
   host: string
@@ -62,6 +63,17 @@ export const ukWorks: UkWork[] = [
     text: 'Переробили старий сайт компанії: їхні власні фото проєктів, повний прайс у відкритому доступі та швидка форма заявки.',
     url: 'https://sadovi-mrii.com.ua/',
     host: 'sadovi-mrii.com.ua'
+  },
+  // A demo, not a client: the brand is invented. Keep the label and say so in the text (see CLAUDE.md).
+  // The link goes to the Ukrainian version of the shop
+  {
+    slug: 'nql',
+    name: 'North Quay Leather',
+    kind: 'Демо-магазин',
+    niche: 'Шкіряні сумки',
+    text: 'Бренд вигаданий, тут нічого не продається. Магазин зроблено, щоб показати, як працює покупка: каталог із фільтром за кольором, сторінка товару, кошик і оплата тестовою карткою через Shopify.',
+    url: 'https://max-lutskov.github.io/north-quay-leather/ua/',
+    host: 'max-lutskov.github.io'
   }
 ]
 

@@ -17,8 +17,8 @@ useSeoMeta({
         <p class="label">Labs</p>
         <h1>Products and tools</h1>
         <p class="lead">
-          Beyond marketing websites: the software we build to run our own work. Each case says what
-          it does, what was hard and how it was solved.
+          Beyond marketing websites: the software we build to run our own work, and demo projects.
+          Each case says what it does, what was hard and how it was solved.
         </p>
       </div>
 

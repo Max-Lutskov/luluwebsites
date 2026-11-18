@@ -2,6 +2,8 @@
 // Not linked from the homepage and noindex: the homepage is for small-business owners (see CLAUDE.md).
 // Every number here comes from the LeadForge database or code. Recount before changing one:
 // source and date are in `leadforge.numbersNote`.
+// North Quay Leather: every fact is from the shop's repository (CLAUDE.md, docs/shopify-prototype-plan.md)
+// and the live demo. It is a demo with an invented brand: never call it a client site.
 
 export interface LabCase {
   slug: string
@@ -20,6 +22,14 @@ export const cases: LabCase[] = [
     summary:
       'An outreach pipeline: it finds small businesses with a broken website, builds each one a concept homepage from its own content, and emails the owner during their working hours.',
     stack: ['Python', 'FastAPI', 'Playwright', 'SQLite', 'Nuxt 4', 'Claude API']
+  },
+  {
+    slug: 'north-quay-leather',
+    name: 'North Quay Leather',
+    kind: 'Demo store',
+    summary:
+      'A headless Shopify shop for an invented leather bag brand. The catalogue comes from the Storefront API, the cart works in the browser, and payment runs on Shopify Checkout with a test gateway. Nothing is for sale.',
+    stack: ['Nuxt 4', 'Vue 3', 'TypeScript', 'Shopify Storefront API', 'GitHub Pages']
   }
 ]
 
@@ -129,4 +139,110 @@ export const leadforge = {
     title: 'Testing',
     text: 'The audit tests start two local websites, one broken and one healthy, and run the real Chromium audit against them. The scoring, fit and number-check code is pure functions, so they are tested without a network.'
   }
+}
+
+export const nql = {
+  title: 'North Quay Leather',
+  kind: 'Case study · Demo store',
+  lead:
+    'A demo shop for leather bags on headless Shopify. The brand is invented and nothing is for sale, but the whole path works: catalogue, product, cart and a test payment on Shopify Checkout.',
+  byline: 'Designed and built by Max at LuLu Studio.',
+  stack: [
+    'Nuxt 4',
+    'Vue 3',
+    'TypeScript',
+    'Shopify Storefront API',
+    'Shopify Cart API',
+    'Shopify Checkout',
+    'CSS custom properties',
+    'GitHub Pages'
+  ],
+  demoUrl: 'https://max-lutskov.github.io/north-quay-leather/',
+  codeUrl: 'https://github.com/Max-Lutskov/north-quay-leather',
+
+  about: {
+    title: 'What it is and why',
+    text: [
+      'North Quay Leather is not a client site. It is a portfolio demo: the brand is invented, the orders are not real, and a “Demo store” strip on every page says so.',
+      'It exists to show a shop that works from the first screen to the paid order. Product data comes from Shopify, the cart talks to the Cart API, and the checkout can be finished with a test card.'
+    ]
+  },
+
+  built: [
+    {
+      title: 'Catalogue from Shopify',
+      text: 'Products, collections, colour variants, prices and stock come from the Storefront API. There are 8 products. Collection pages sort and filter by colour in the browser, and the choice is kept in the URL.'
+    },
+    {
+      title: 'Product page',
+      text: 'A colour picker switches the photos and the variant that goes into the cart. Details and dimensions come from Shopify metafields.'
+    },
+    {
+      title: 'Cart drawer',
+      text: 'The Cart API is called straight from the browser. The drawer traps focus and closes on Esc. Every total is the one Shopify returned, nothing is recalculated on the page.'
+    },
+    {
+      title: 'Checkout',
+      text: 'The Checkout button hands the cart over to Shopify Checkout. It runs on a development store with a test payment gateway, so no money moves.'
+    },
+    {
+      title: 'Design system',
+      text: 'No UI library. Design tokens are CSS custom properties, fonts are self-hosted and photos are served as WebP.'
+    },
+    {
+      title: 'Two languages',
+      text: 'The interface is in English and Ukrainian.'
+    }
+  ],
+  // Counted on the live /collections/all page
+  numbersNote: 'The product count is from the live catalogue on November 19, 2026.',
+
+  video: {
+    title: 'The checkout, recorded',
+    lead: 'The whole path in one take: product, cart, Shopify Checkout, test payment and the Thank you page. No sound.',
+    hint: 'To go through the checkout yourself, open the live demo and add a bag to the cart. The cart shows the store password and the test card number.'
+  },
+
+  hard: [
+    {
+      title: 'No fake success',
+      text: '“Added” shows only after the Cart API confirms the line. Shopify can answer with a warning, for example when a bag is sold out. That counts as a failure: the cart is refreshed to its real state and the button shows the error.'
+    },
+    {
+      title: 'A static site with live data',
+      text: 'The site is built with nuxt generate and hosted on GitHub Pages, with no server. The catalogue is read from Shopify at build time. If Shopify is unreachable the build fails, and the previous working version stays online.'
+    },
+    {
+      title: 'A password in front of the checkout',
+      text: 'A Shopify development store is always behind a password, and after the password Shopify opens its own home page, not the checkout. The cart explains this and links to the password page, so the next press of Checkout goes to payment.'
+    },
+    {
+      title: 'URL state on prerendered pages',
+      text: 'The chosen colour and sort order live in the query string. They are read after the page mounts and written with history.replaceState, because a router navigation during hydration of a static page lost the query.'
+    }
+  ],
+
+  shots: [
+    {
+      file: 'home',
+      title: 'Home',
+      text: 'The first screen, with the “Demo store” strip above the header.'
+    },
+    {
+      file: 'collection',
+      title: 'Collection',
+      text: 'All bags, with the colour filter and sorting.'
+    },
+    {
+      file: 'product',
+      title: 'Product',
+      text: 'Colour picker, price and the add to cart button. Details, size and shipping open below.'
+    },
+    {
+      file: 'cart',
+      title: 'Cart',
+      text: 'The drawer after adding a bag, with the note on how to test the checkout.'
+    }
+  ],
+  shotsNote: 'Screenshots of the live demo, taken on November 19, 2026.'
 }

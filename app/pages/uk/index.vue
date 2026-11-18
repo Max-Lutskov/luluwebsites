@@ -94,7 +94,7 @@ const pad = (i: number) => String(i + 1).padStart(2, '0')
               <span class="pill">{{ work.niche }}</span>
             </p>
             <h3>{{ work.name }}</h3>
-            <p class="project__location">
+            <p v-if="work.location" class="project__location">
               <AppIcon name="pin" :size="18" />
               {{ work.location }}
             </p>

@@ -17,6 +17,8 @@ SITES = {
     "ohio": ("https://max-lutskov.github.io/Ohio-Demo/", 2500),
     "protskov": ("https://protskovbud.vn.ua/", 1500),
     "sadovi": ("https://sadovi-mrii.com.ua/", 4500),
+    # Demo shop, Ukrainian version: its card is on /uk/ only
+    "nql": ("https://max-lutskov.github.io/north-quay-leather/ua/", 2500),
 }
 
 VIEWPORTS = {
