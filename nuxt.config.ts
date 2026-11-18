@@ -30,7 +30,7 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'static',
     prerender: {
-      routes: ['/', '/thanks/', '/not-sent/', '/not-found/', '/labs/', '/labs/leadforge/', '/labs/north-quay-leather/', '/uk/', '/uk/thanks/', '/uk/not-sent/'],
+      routes: ['/', '/thanks/', '/not-sent/', '/not-found/', '/labs/', '/labs/leadforge/', '/labs/north-quay-leather/', '/labs/snail-artillery/', '/uk/', '/uk/thanks/', '/uk/not-sent/'],
       crawlLinks: false
     }
   },

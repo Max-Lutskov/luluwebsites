@@ -4,6 +4,8 @@
 // source and date are in `leadforge.numbersNote`.
 // North Quay Leather: every fact is from the shop's repository (CLAUDE.md, docs/shopify-prototype-plan.md)
 // and the live demo. It is a demo with an invented brand: never call it a client site.
+// Snail Artillery: every fact is from the game's repository (D:\\Snail-Wormix: src/core, server/, docs/online.md).
+// The case uses the game's own title; "Wormix" is another game's name and stays out of the copy.
 
 export interface LabCase {
   slug: string
@@ -30,6 +32,14 @@ export const cases: LabCase[] = [
     summary:
       'A headless Shopify shop for an invented leather bag brand. The catalogue comes from the Storefront API, the cart works in the browser, and payment runs on Shopify Checkout with a test gateway. Nothing is for sale.',
     stack: ['Nuxt 4', 'Vue 3', 'TypeScript', 'Shopify Storefront API', 'GitHub Pages']
+  },
+  {
+    slug: 'snail-artillery',
+    name: 'Snail Artillery',
+    kind: 'Game',
+    summary:
+      'A turn-based artillery game with snails: aim with a slingshot, mind the wind, blow holes in the ground. Against a bot, on one device, or with a friend by link. A personal project, not a commercial release.',
+    stack: ['TypeScript', 'Phaser 4', 'Vite', 'Node.js', 'WebSocket', 'Vitest']
   }
 ]
 
@@ -245,4 +255,100 @@ export const nql = {
     }
   ],
   shotsNote: 'Screenshots of the live demo, taken on November 19, 2026.'
+}
+
+export const snail = {
+  title: 'Snail Artillery',
+  kind: 'Case study · Game',
+  lead:
+    'A turn-based artillery game for two, played by snails with cannons. You pull a slingshot, the shot flies with gravity and wind, and the blast carves a hole in the ground. It runs in the browser: against a bot, on one device, or with a friend by link.',
+  byline: 'Designed and built by Max at LuLu Studio.',
+  stack: ['TypeScript', 'Phaser 4', 'Vite', 'Node.js', 'WebSocket', 'Web Audio', 'Vitest', 'Render'],
+  gameUrl: 'https://snail-artillery.onrender.com/',
+  codeUrl: 'https://github.com/Max-Lutskov/Snail-Wormix',
+  // render.yaml: the free plan sleeps after about 15 minutes without traffic
+  wakeNote: 'The game is on a free hosting plan that goes to sleep. The first visit can take about a minute to load.',
+
+  about: {
+    title: 'What it is and why',
+    text: [
+      'Snail Artillery is a personal project, not a commercial release. The name is a working title and the game is still growing: three kinds of ammo and four drawn maps so far.',
+      'It is here for the engineering under it. The simulation gives the same result in every browser and on the server, so an online match only needs to send what the players do.'
+    ]
+  },
+
+  built: [
+    {
+      title: 'Slingshot aiming',
+      text: 'Press, pull back and release. A dotted arc previews the start of the flight, computed by the same code that flies the real shot.'
+    },
+    {
+      title: 'Destructible ground',
+      text: 'The ground is a pixel mask, one byte per pixel. A blast turns a circle of it into air, and a snail left without ground falls. Below the water line it drowns.'
+    },
+    {
+      title: 'Three kinds of ammo',
+      text: 'A pea with unlimited shots, a heavier acorn with a bigger blast, and a dandelion seed that does no damage but drills a tunnel a snail can crawl through.'
+    },
+    {
+      title: 'Wind and the shell',
+      text: 'The wind changes every turn and pushes the shot sideways. Instead of shooting, a snail can hide in its shell, and that is its move.'
+    },
+    {
+      title: 'A bot with three levels',
+      text: 'On its turn the bot tries shots with the same physics the match uses and keeps the one that lands nearest the enemy without hurting itself. The level sets how far it then misses.'
+    },
+    {
+      title: 'A match by link',
+      text: 'One player creates a room and sends the link. The friend opens it and is in the match, in the browser, with no install and no sign-up.'
+    },
+    {
+      title: 'Sound without audio files',
+      text: 'The effects and the music are synthesized with Web Audio. The music follows the match: a calm pad in the menu, a fuller beat while a shot flies.'
+    },
+    {
+      title: 'Phones',
+      text: 'On a phone the first tap goes fullscreen, and the controls stay inside the safe area of the screen.'
+    }
+  ],
+  // weapons.ts (WEAPON_IDS), public/maps/index.json and bot.ts (BotLevel) on origin/main
+  numbersNote: 'The counts of ammo, maps and bot levels are from the code on the main branch, checked on November 19, 2026.',
+
+  hard: [
+    {
+      title: 'One simulation for the browser and the server',
+      text: 'All the rules live in a module with no Phaser and no DOM: shots, blasts, terrain, turns, damage. ESLint forbids it to import the renderer, call Math.random or read the clock. The same code runs in the browser and on the Node server.'
+    },
+    {
+      title: 'Same inputs, same match',
+      text: 'The simulation runs in fixed steps, 60 per second, with a seeded random generator. A shot is passed as a vector, so no sin or cos runs inside the simulation: those can differ in the last bit between JavaScript engines.'
+    },
+    {
+      title: 'Online play that sends inputs, not the world',
+      text: 'The server runs the match and takes input only from the player whose turn it is. Both clients get the input of every tick and step the same simulation. Once a second the server sends a checksum of the state, and a client that drifted asks for the full state. A player who reconnects by the same link plays on.'
+    },
+    {
+      title: 'Terrain that fits in a few kilobytes',
+      text: 'The saved state holds where the terrain came from and the list of craters, in order. The pixel mask is rebuilt from that, so the state is a few KB of JSON and not about 1 MB.'
+    }
+  ],
+
+  shots: [
+    {
+      file: 'menu',
+      title: 'Map choice',
+      text: 'Four drawn maps and three bot levels.'
+    },
+    {
+      file: 'aim',
+      title: 'Aiming',
+      text: 'The slingshot band and the first dots of the arc. Ammo is at the bottom left, the wind at the top.'
+    },
+    {
+      file: 'blast',
+      title: 'Impact',
+      text: 'A pea lands short and leaves a crater in the ground.'
+    }
+  ],
+  shotsNote: 'Screenshots of the live game, taken on November 19, 2026. The interface is in Ukrainian.'
 }
