@@ -205,6 +205,9 @@ img {
 .uk {
   --font-display: 'Onest', 'Arial', sans-serif;
   --font-text: 'Onest', system-ui, sans-serif;
+  /* JetBrains Mono has no Cyrillic either: labels already fall back to the system monospace,
+     so don't download the font for a middle dot */
+  --font-mono: ui-monospace, monospace;
   font-family: var(--font-text);
 }
 

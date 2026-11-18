@@ -66,7 +66,7 @@ const pad = (i: number) => String(i + 1).padStart(2, '0')
               <img
                 :src="shotSrc(work.slug, 'desktop', 960)"
                 :srcset="shotSrcset(work.slug, 'desktop')"
-                sizes="(min-width: 1000px) 640px, 90vw"
+                sizes="(min-width: 1000px) 640px, (min-width: 600px) 84vw, 73vw"
                 :width="shotSize.desktop.width"
                 :height="shotSize.desktop.height"
                 :alt="`Головна сторінка ${work.name} на комп’ютері`"
@@ -78,7 +78,7 @@ const pad = (i: number) => String(i + 1).padStart(2, '0')
               <img
                 :src="shotSrc(work.slug, 'phone', 390)"
                 :srcset="shotSrcset(work.slug, 'phone')"
-                sizes="150px"
+                sizes="(min-width: 640px) 150px, 22vw"
                 :width="shotSize.phone.width"
                 :height="shotSize.phone.height"
                 :alt="`${work.name} на телефоні`"
@@ -257,6 +257,11 @@ h1 {
   gap: 2rem 3.5rem;
   align-items: center;
   padding: clamp(16px, 3vw, 36px);
+}
+
+/* A long address in the browser bar (nowrap) must not widen the card past the screen */
+.project > * {
+  min-width: 0;
 }
 
 .project__visual {

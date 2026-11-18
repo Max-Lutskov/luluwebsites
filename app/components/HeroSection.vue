@@ -43,6 +43,8 @@ import { facts, site } from '~/data/site'
 
 .hero__grid {
   display: grid;
+  /* minmax(0, …): the phone illustration must not widen the column past the gutters on a narrow screen */
+  grid-template-columns: minmax(0, 1fr);
   gap: 3rem;
   align-items: center;
 }
@@ -135,7 +137,7 @@ mark {
 
 @media (min-width: 960px) {
   .hero__grid {
-    grid-template-columns: 1.25fr 1fr;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
   }
 
   .facts__item + .facts__item {

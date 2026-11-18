@@ -50,7 +50,7 @@
 }
 
 .illo__phone {
-  width: min(290px, 78vw);
+  width: min(290px, 100%);
   aspect-ratio: 9 / 19;
 }
 

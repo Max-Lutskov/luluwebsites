@@ -4,7 +4,7 @@
 // source and date are in `leadforge.numbersNote`.
 // North Quay Leather: every fact is from the shop's repository (CLAUDE.md, docs/shopify-prototype-plan.md)
 // and the live demo. It is a demo with an invented brand: never call it a client site.
-// Snail Artillery: every fact is from the game's repository (D:\\Snail-Wormix: src/core, server/, docs/online.md).
+// Snail Artillery: every fact is from the game's repository (D:/Snail-Wormix: src/core, server/, docs/online.md).
 // The case uses the game's own title; "Wormix" is another game's name and stays out of the copy.
 
 export interface LabCase {
