@@ -18,6 +18,7 @@ SITES = {
     "protskov": ("https://protskovbud.vn.ua/", 1500),
     "sadovi": ("https://sadovi-mrii.com.ua/", 4500),
     "buketi": ("https://solodki-buketi.vn.ua/", 2500),
+    "masazh": ("https://massage-prostir.makslutskov1.workers.dev/", 2500),
     # Demo shop: the Ukrainian version for the card on /uk/, the English one for the homepage
     "nql": ("https://max-lutskov.github.io/north-quay-leather/ua/", 2500),
     "nql-en": ("https://max-lutskov.github.io/north-quay-leather/", 2500),

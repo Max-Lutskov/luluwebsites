@@ -64,6 +64,18 @@ export const ukWorks: UkWork[] = [
     url: 'https://sadovi-mrii.com.ua/',
     host: 'sadovi-mrii.com.ua'
   },
+  // Facts from the site itself (services, prices, booking by message). No own domain yet: when it gets one,
+  // change url and host here
+  {
+    slug: 'masazh',
+    name: 'Massage prostir',
+    kind: 'Сайт клієнта',
+    niche: 'Масажний кабінет',
+    location: 'Вінниця',
+    text: 'Чотири види масажу з цінами й тривалістю, фото кабінету та відповіді на часті питання. Запис повідомленням у Viber, Telegram або WhatsApp.',
+    url: 'https://massage-prostir.makslutskov1.workers.dev/',
+    host: 'massage-prostir.makslutskov1.workers.dev'
+  },
   // A demo, not a client: the brand is invented. Keep the label and say so in the text (see CLAUDE.md).
   // The link goes to the Ukrainian version of the shop
   {
