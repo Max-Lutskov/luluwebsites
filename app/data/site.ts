@@ -27,10 +27,11 @@ export const facts: { value: string; label: string }[] = [
 export interface Work {
   slug: string
   name: string
-  /** Honest label: "Concept" = nobody commissioned it */
+  /** Honest label: "Demo store" = an invented brand, nobody commissioned it */
   kind: string
   niche: string
-  location: string
+  /** Empty for the demo shop: an invented brand has no city */
+  location?: string
   text: string
   url: string
   /** Address as shown in the browser bar */
@@ -38,16 +39,6 @@ export interface Work {
 }
 
 export const works: Work[] = [
-  {
-    slug: 'ohio',
-    name: 'Ohio Transit Company',
-    kind: 'Concept',
-    niche: 'Trucking',
-    location: 'Columbus, Ohio',
-    text: 'A concept homepage built from the company’s own photos and text. It’s the kind of concept we send with our emails. The company didn’t commission it.',
-    url: 'https://max-lutskov.github.io/Ohio-Demo/',
-    host: 'max-lutskov.github.io/Ohio-Demo'
-  },
   {
     slug: 'protskov',
     name: 'Protskov Bud',
@@ -67,6 +58,17 @@ export const works: Work[] = [
     text: 'A rebuild of the company’s old site: their own project photos, the full price list in the open and a quick request form. The site is in Ukrainian.',
     url: 'https://sadovi-mrii.com.ua/',
     host: 'sadovi-mrii.com.ua'
+  },
+  // A demo, not a client: the brand is invented. Screenshots `nql-en` are the English version
+  // of the shop (`nql` is the Ukrainian one, used on /uk/)
+  {
+    slug: 'nql-en',
+    name: 'North Quay Leather',
+    kind: 'Demo store',
+    niche: 'Leather bags',
+    text: 'The brand is invented and nothing is for sale. We built the shop to show how buying works: a catalogue with a colour filter, a product page, a cart and payment with a test card through Shopify.',
+    url: 'https://max-lutskov.github.io/north-quay-leather/',
+    host: 'max-lutskov.github.io'
   }
 ]
 

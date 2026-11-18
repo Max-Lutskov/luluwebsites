@@ -1,5 +1,6 @@
 // Turns the PNG screenshots in screenshots/ into WebP variants for srcset:
-// screenshots/ohio-desktop.png → public/images/work/ohio-desktop-480.webp etc.
+// screenshots/protskov-desktop.png → public/images/work/protskov-desktop-480.webp etc.
+// The output folder is wiped first: a slug with no PNG in screenshots/ loses its WebP files.
 // Run after scripts/screenshots.py: `npm run images`. Commit the .webp files.
 // The widths must match shotWidths in app/utils/img.ts.
 import { mkdir, readdir, rm } from 'node:fs/promises'

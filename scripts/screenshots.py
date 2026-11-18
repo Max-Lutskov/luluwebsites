@@ -4,7 +4,8 @@
 
 Run with any Python that has Playwright (LeadForge's venv works):
     D:\\LuLu-websites\\backend\\.venv\\Scripts\\python.exe scripts/screenshots.py
-Then `npm run images` makes the WebP variants.
+Then `npm run images` makes the WebP variants. It wipes public/images/work/ first and rebuilds it only
+from the PNGs in screenshots/, so every slug used in site.ts and uk.ts must be in SITES below.
 """
 from pathlib import Path
 
@@ -14,11 +15,12 @@ OUT = Path(__file__).resolve().parent.parent / "screenshots"
 
 # slug -> (url, ms to wait for load animations)
 SITES = {
-    "ohio": ("https://max-lutskov.github.io/Ohio-Demo/", 2500),
     "protskov": ("https://protskovbud.vn.ua/", 1500),
     "sadovi": ("https://sadovi-mrii.com.ua/", 4500),
-    # Demo shop, Ukrainian version: its card is on /uk/ only
+    "buketi": ("https://solodki-buketi.vn.ua/", 2500),
+    # Demo shop: the Ukrainian version for the card on /uk/, the English one for the homepage
     "nql": ("https://max-lutskov.github.io/north-quay-leather/ua/", 2500),
+    "nql-en": ("https://max-lutskov.github.io/north-quay-leather/", 2500),
 }
 
 VIEWPORTS = {
