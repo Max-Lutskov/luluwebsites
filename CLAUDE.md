@@ -6,14 +6,19 @@ The site of **LuLu Studio**, a small web team run by Max Lutskov (Vinnytsia, Ukr
 
 | Part | Reader | Language | Indexed | Linked from |
 |---|---|---|---|---|
-| `/` (homepage) | Owners of small US businesses who got a cold email | English | yes | the emails |
-| `/uk/` | Ukrainian small-business owners (Threads, word of mouth) | Ukrainian | yes | Max sends the link himself |
+| `/` (homepage) | Owners of small US businesses who got a cold email | English | yes | the emails; the "English" link on `/uk/` |
+| `/uk/` | Ukrainian small-business owners (Threads, word of mouth) | Ukrainian | yes | Max sends the link himself; the «Українською» link on `/` |
 | `/labs/` | People who hire developers | English | **noindex** | nothing on the site |
 
 The homepage reader got a cold email from `max@lulustudio.dev` (sent by LeadForge, `D:\LuLu-websites`, see its
 CLAUDE.md) and typed the domain to check who wrote. In 10 seconds they must see a real person doing real, good work,
 and know what to do next (reply to the email, or use the form). Everything below that isn't under "/uk/" or "/labs/"
 describes the homepage.
+
+**Language link (Max, 2026-11-19):** `/` and `/uk/` link to each other with a plain link («Українською» / "English"):
+in the header nav from 768px, and in the footer at every width (four nav links don't fit one line on a 375px phone).
+The pages are not translations of each other, so there is no `rel="alternate" hreflang` in the `<head>`. Labs pages
+use the homepage header and footer, so they show the link too; nothing links *to* `/labs/`.
 
 The original brief: `D:\LuLu-websites\docs\lulustudio-site-brief.md`.
 
@@ -29,6 +34,13 @@ which is in Ukrainian.
 - Pages are prerendered from an explicit list (`nitro.prerender.routes`, `crawlLinks: false`). **A new page that isn't
   added to that list doesn't get built.**
 - `scripts/after-generate.mjs` copies `/not-found/` to `404.html` and removes the SPA `200.html`.
+- `server/plugins/prerender-head.ts` edits the `<head>` at prerender: it removes the `speculationrules` script that
+  Nuxt adds with `noScripts` (it listed every route, `/labs/` included, on every page), and on `/uk/` it swaps the font
+  preloads to Onest. Don't delete it; after a Nuxt upgrade check the built HTML has no `<script` except JSON-LD.
+- **Screenshots of the work:** `scripts/screenshots.py` (PNG into `screenshots/`, git-ignored) → `npm run images`
+  (WebP into `public/images/work/`). **`npm run images` wipes `public/images/work/` first** and rebuilds it only from
+  the PNGs that exist, so every slug used in `site.ts` and `uk.ts` must be in `SITES` in `screenshots.py` and have its
+  PNGs. After a run, check there are 7 WebP files per slug. Labs images (`public/images/labs/`) are not touched by it.
 - Hosting: Cloudflare Pages project `lulustudio` (direct upload, no git builds): `npm run deploy` with `.env` loaded. Dashboard steps in README.
 - Skills in `.claude/skills/` (copied from Max's other projects). Use them.
 - Windows: `npm.cmd` / `npx.cmd` in PowerShell.
@@ -40,10 +52,14 @@ All in `app/data/site.ts`.
 - Services: new sites from scratch and redesigns. 6 years building websites. Don't mention his SaaS job.
 - **A small team, not "just me"** (Max, 2026-10-24): "we" for the studio's work, "I" only for Max himself
   (the emails come from him, he is the client's contact). Don't invent team size, names or roles.
-- Work on the homepage, exactly these three, labelled honestly (`/uk/` has its own list, see below):
-  - Ohio Transit Company: **Concept** (not commissioned), https://max-lutskov.github.io/Ohio-Demo/
+- Work on the homepage, exactly these three in this order, labelled honestly (`/uk/` has its own list, see below):
   - Protskov Bud: **Client site**, https://protskovbud.vn.ua/ (repo `D:\Projects`)
   - Sadovi Mrii: **Redesign**, https://sadovi-mrii.com.ua/ (repo `D:\sadovi-mrii`; the client left, Max hosts it himself)
+  - North Quay Leather: **Demo store**, https://max-lutskov.github.io/north-quay-leather/ (the English version; repo
+    `C:\Users\maksl\Desktop\otl-demo\web`). An invented brand, nothing is sold: the card says so and has no `location`.
+    Screenshots slug `nql-en` (`nql` is the Ukrainian version, used on `/uk/`).
+- **The Ohio Transit concept was removed on 2026-11-19 at Max's request.** Don't bring it back, and don't mention Ohio
+  anywhere on the site.
 - No testimonials: Max has Ukrainian ones only, nothing relevant for US owners.
 - **MOCK / not confirmed:** step 3 "fixed price before any work starts" (how Max talks about prices); legal entity
   (none in the footer until Max says).
@@ -97,9 +113,13 @@ block, no phone illustration and no "who wrote to me" framing. They want to see 
 - **Font: Onest** for both headings and text. Bricolage Grotesque and Instrument Sans have no Cyrillic, so with
   them Ukrainian text falls back to a system font. The `.uk` class in `main.css` overrides `--font-display` and
   `--font-text`; Onest is loaded with the `cyrillic` subset in `nuxt.config.ts`. Don't "unify" the fonts with the
-  homepage, and don't add a font to `/uk/` without checking it has Cyrillic.
-- Work on `/uk/`: Процков Буд, Солодкі букети (solodki-buketi.vn.ua), Садові Мрії. **No Ohio Transit concept here**
-  (Max's choice). Screenshots are shared with the homepage by slug (`utils/img.ts`).
+  homepage, and don't add a font to `/uk/` without checking it has Cyrillic. `.uk` also sets `--font-mono` to the
+  system monospace (JetBrains Mono has no Cyrillic), and `prerender-head.ts` makes `/uk/` preload Onest.
+- Work on `/uk/`, in this order: Процков Буд, Солодкі букети (solodki-buketi.vn.ua), Садові Мрії, Massage prostir,
+  North Quay Leather. Screenshots are shared with the homepage by slug (`utils/img.ts`).
+- **Massage prostir** (slug `masazh`, added 2026-11-19): «Сайт клієнта», a massage studio in Vinnytsia (repo
+  `D:\masazh`, private). No own domain yet: the card links to `https://massage-prostir.makslutskov1.workers.dev/`;
+  when the domain appears, change `url` and `host` in `uk.ts`. Only on `/uk/`, not on the homepage.
 - The last card is **North Quay Leather, «Демо-магазин»** (slug `nql`): a demo shop with an invented brand, not a
   client. Never label it «Сайт клієнта»; the text says the brand is invented and nothing is sold. It has no
   `location` (the field is optional). The link goes to the Ukrainian version of the live demo, not to `/labs/`.
@@ -124,11 +144,18 @@ outreach pipeline" learns that the email was automated.
   changing one. No rounding up, no "about 400".
 - Screenshots of LeadForge: company names, addresses and emails replaced with placeholders. The rule about not
   showing demo concepts of real companies applies here too.
-- Cases: LeadForge (`leadforge.vue`) and North Quay Leather (`north-quay-leather.vue`, a headless Shopify demo shop,
-  repo `C:\Users\maksl\Desktop\otl-demo\web`). The shop is a demo with an invented brand: say so, no client names,
-  no results ("sales", "conversion"). Facts come from that repo's CLAUDE.md and plan.
-- Case media live in `public/images/labs/` (`<case>-<name>-720.webp` / `-1440.webp` from 1440×900 screenshots; the
-  checkout recording `nql-checkout.mp4` + poster). Video: native `controls`, no JavaScript, with width/height.
+- Cases: LeadForge (`leadforge.vue`), North Quay Leather (`north-quay-leather.vue`, a headless Shopify demo shop,
+  repo `C:\Users\maksl\Desktop\otl-demo\web`) and Snail Artillery (`snail-artillery.vue`, added 2026-11-19).
+  The shop is a demo with an invented brand: say so, no client names, no results ("sales", "conversion"). Facts come
+  from that repo's CLAUDE.md and plan.
+- **Snail Artillery** is Max's game (repo `D:\Snail-Wormix`, public `Max-Lutskov/Snail-Wormix`, live on
+  https://snail-artillery.onrender.com, a free Render plan that sleeps). A personal project, not a commercial release:
+  no players, ratings or numbers without a source; counts (ammo, maps, bot levels) come from the code on `main`.
+  The case uses the game's own title: "Wormix" is another game's name and stays out of the copy (the game's CLAUDE.md
+  says the same). Max asked for three strong cases, not five raw ones: don't add more without him.
+- Case media live in `public/images/labs/` (`<case>-<name>-720.webp` / `-1440.webp` from 1440×900 screenshots,
+  prefixes `leadforge-`, `nql-`, `snail-`; the checkout recording `nql-checkout.mp4` + poster). Video: native
+  `controls`, no JavaScript, with width/height.
 - Don't mention Max's day job or employer.
 - Same design tokens and components as the homepage, and the same zero-JavaScript rule.
 
