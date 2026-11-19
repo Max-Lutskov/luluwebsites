@@ -52,7 +52,7 @@ const pad = (i: number) => String(i + 1).padStart(2, '0')
     <div class="wrap">
       <div class="section-head">
         <h2 id="work-title">Роботи</h2>
-        <p class="lead">Справжні сайти: відкрийте і спробуйте з телефона.</p>
+        <p class="lead">Відкрийте кожен і спробуйте з телефона.</p>
       </div>
 
       <ul class="work__list">
