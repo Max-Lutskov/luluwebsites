@@ -100,15 +100,16 @@ block, no phone illustration and no "who wrote to me" framing. They want to see 
 - Files: copy in `app/data/uk.ts`, page `app/pages/uk/index.vue`, `uk/thanks.vue`, `uk/not-sent.vue`,
   `UkHeader.vue`, `UkFooter.vue`. `app.vue` switches header, footer and the `.uk` class by `path.startsWith('/uk')`.
   The page sets `lang="uk"` and its own canonical.
-- **Don't write «лендінг»** (in copy, titles, meta, alt). The offer is one thing: «сайт до 7 сторінок» for $200.
-  Max used to call it "landing page $200" and dropped it on purpose: he does up to 7 pages for that price and sells it
+- **Don't write «лендінг»** (in copy, titles, meta, alt). The offer is one thing: «сайт до 7 сторінок» «від $350».
+  Max used to call it "landing page $200" and dropped it on purpose: he does up to 7 pages for one price and sells it
   as one offer, not split into "landing" and "multi-page". The word also puts him next to the "landing for free, pay
   only for hosting" offers that he can't and doesn't want to beat on price. Say «сайт» or «сайт для бізнесу».
 - **No price in the `h1`.** The headline is the position (a site made for your business, not a subscription
   template), the price comes after it. Competitors in Ukraine are much cheaper, so a headline that leads with a number
   starts a price comparison that Max loses. The price is not hidden: it stays in the facts strip, the `#prices` block
   and the meta description. Don't remove it from those, and don't move it up into the headline or the hero lead.
-- Prices (Max, 2026-11-17): site up to 7 pages $200; online shop «від $600», exact price after a talk, fixed before
+- Prices (Max, 2026-11-20; were $200 and «від $600» since 2026-11-17): site up to 7 pages «від $350»; online shop
+  «від $800», exact price after a talk, fixed before
   work starts. Don't add packages, discounts or a subscription.
 - **Font: Onest** for both headings and text. Bricolage Grotesque and Instrument Sans have no Cyrillic, so with
   them Ukrainian text falls back to a system font. The `.uk` class in `main.css` overrides `--font-display` and
