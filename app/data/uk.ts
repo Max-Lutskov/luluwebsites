@@ -7,14 +7,14 @@ export const uk = {
   url: 'https://lulustudio.dev/uk/',
   title: 'LuLu Studio: сайти для малого бізнесу',
   description:
-    'LuLu Studio робить сайти для малого бізнесу. Сайт до 7 сторінок — $200, інтернет-магазин — від $600. Вінниця.',
+    'LuLu Studio робить сайти для малого бізнесу. Сайт до 7 сторінок — від $350, інтернет-магазин — від $800. Вінниця.',
   telegram: 'Lutskov',
   telegramUrl: 'https://t.me/Lutskov'
 }
 
 export const ukFacts: { value: string; label: string }[] = [
   { value: '6 років', label: 'робимо сайти' },
-  { value: '$200', label: 'сайт до 7 сторінок' },
+  { value: 'від $350', label: 'сайт до 7 сторінок' },
   // Max, 2026-11-17: domains so far are registered on his email, he hands them over on request
   { value: 'Сайт і домен ваші', label: 'передаємо на ваш акаунт' },
   { value: 'Ціна наперед', label: 'фіксуємо до початку роботи' }
@@ -92,7 +92,7 @@ export const ukWorks: UkWork[] = [
 export const ukPrices: { name: string; price: string; text: string; points: string[] }[] = [
   {
     name: 'Сайт для бізнесу',
-    price: '$200',
+    price: 'від $350',
     text: 'До 7 сторінок: наприклад, головна, послуги, ціни, роботи й контакти.',
     points: [
       'Швидко відкривається з телефона',
@@ -103,10 +103,10 @@ export const ukPrices: { name: string; price: string; text: string; points: stri
   },
   {
     name: 'Інтернет-магазин',
-    price: 'від $600',
+    price: 'від $800',
     text: 'Каталог товарів, сторінка товару й оформлення замовлення.',
     points: [
-      'Усе, що в сайті за $200',
+      'Усе, що входить у сайт для бізнесу',
       'Точну ціну називаємо після розмови',
       'Ціну фіксуємо до початку роботи'
     ]
