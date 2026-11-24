@@ -7,12 +7,22 @@
 // Snail Artillery: every fact is from the game's repository (D:/Snail-Wormix: src/core, server/, docs/online.md).
 // The case uses the game's own title; "Wormix" is another game's name and stays out of the copy.
 
+import type { IconName } from './site'
+
+/** A direct link on a card: the live thing or its code, so the reader can check the claims without opening the case */
+export interface CaseLink {
+  label: string
+  url: string
+  icon: IconName
+}
+
 export interface LabCase {
   slug: string
   name: string
   kind: string
   summary: string
   stack: string[]
+  links?: CaseLink[]
 }
 
 /** Cards on /labs/. A new case = a new entry here + a page in app/pages/labs/ */
@@ -31,7 +41,11 @@ export const cases: LabCase[] = [
     kind: 'Demo store',
     summary:
       'A headless Shopify shop for an invented leather bag brand. The catalogue comes from the Storefront API, the cart works in the browser, and payment runs on Shopify Checkout with a test gateway. Nothing is for sale.',
-    stack: ['Nuxt 4', 'Vue 3', 'TypeScript', 'Shopify Storefront API', 'GitHub Pages']
+    stack: ['Nuxt 4', 'Vue 3', 'TypeScript', 'Shopify Storefront API', 'GitHub Pages'],
+    links: [
+      { label: 'Live demo', url: 'https://max-lutskov.github.io/north-quay-leather/', icon: 'arrow-up-right' },
+      { label: 'Code', url: 'https://github.com/Max-Lutskov/north-quay-leather', icon: 'github' }
+    ]
   },
   {
     slug: 'snail-artillery',
@@ -39,7 +53,11 @@ export const cases: LabCase[] = [
     kind: 'Game',
     summary:
       'A turn-based artillery game with snails: aim with a slingshot, mind the wind, blow holes in the ground. Against a bot, on one device, or with a friend by link. A personal project, not a commercial release.',
-    stack: ['TypeScript', 'Phaser 4', 'Vite', 'Node.js', 'WebSocket', 'Vitest']
+    stack: ['TypeScript', 'Phaser 4', 'Vite', 'Node.js', 'WebSocket', 'Vitest'],
+    links: [
+      { label: 'Play', url: 'https://snail-artillery.onrender.com/', icon: 'arrow-up-right' },
+      { label: 'Code', url: 'https://github.com/Max-Lutskov/Snail-Wormix', icon: 'github' }
+    ]
   }
 ]
 
@@ -206,6 +224,17 @@ export const nql = {
   ],
   // Counted on the live /collections/all page
   numbersNote: 'The product count is from the live catalogue on November 19, 2026.',
+
+  // One PageSpeed Insights run (Lighthouse, mobile) on the home page of the live demo.
+  // Re-run before changing a number: https://pagespeed.web.dev/ with demoUrl
+  perf: [
+    { value: '93', label: 'Performance' },
+    { value: '100', label: 'Accessibility' },
+    { value: '100', label: 'Best Practices' },
+    { value: '0', label: 'Layout shift (CLS)' }
+  ],
+  perfNote:
+    'Lighthouse, mobile, the home page of the live demo: one PageSpeed Insights run on November 20, 2026. Largest Contentful Paint 2.9 s, Total Blocking Time 20 ms. The SEO score is 66, because the demo tells search engines not to index it.',
 
   video: {
     title: 'The checkout, recorded',

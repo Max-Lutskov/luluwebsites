@@ -30,10 +30,23 @@ useSeoMeta({
           <ul class="case__stack" aria-label="Stack">
             <li v-for="tech in item.stack" :key="tech" class="pill">{{ tech }}</li>
           </ul>
-          <a class="button" :href="`/labs/${item.slug}/`">
-            Read the case
-            <AppIcon name="arrow-right" :size="18" />
-          </a>
+          <div class="case__actions">
+            <a class="button" :href="`/labs/${item.slug}/`">
+              Read the case
+              <AppIcon name="arrow-right" :size="18" />
+            </a>
+            <a
+              v-for="link in item.links"
+              :key="link.url"
+              class="button button--outline"
+              :href="link.url"
+              target="_blank"
+              rel="noopener"
+            >
+              <AppIcon :name="link.icon" :size="18" />
+              {{ link.label }}
+            </a>
+          </div>
         </li>
       </ul>
     </div>
@@ -77,5 +90,11 @@ h1 {
   margin: 0 0 0.5rem;
   padding: 0;
   list-style: none;
+}
+
+.case__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 </style>

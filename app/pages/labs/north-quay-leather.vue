@@ -20,8 +20,13 @@ useSeoMeta({
         <ul class="stack" aria-label="Stack">
           <li v-for="tech in c.stack" :key="tech" class="pill">{{ tech }}</li>
         </ul>
+        <!-- The recording first: the live checkout sits behind a Shopify store password -->
         <div class="hero__actions">
-          <a class="button" :href="c.demoUrl" target="_blank" rel="noopener">
+          <a class="button" href="#checkout">
+            Watch the checkout
+            <AppIcon name="arrow-right" :size="18" />
+          </a>
+          <a class="button button--outline" :href="c.demoUrl" target="_blank" rel="noopener">
             Open the live demo
             <AppIcon name="arrow-up-right" :size="18" />
           </a>
@@ -53,10 +58,18 @@ useSeoMeta({
           </li>
         </ul>
         <p class="note">{{ c.numbersNote }}</p>
+
+        <ul class="perf" aria-label="Lighthouse scores, mobile">
+          <li v-for="n in c.perf" :key="n.label">
+            <strong>{{ n.value }}</strong>
+            <span>{{ n.label }}</span>
+          </li>
+        </ul>
+        <p class="note">{{ c.perfNote }}</p>
       </div>
     </section>
 
-    <section class="section video-section" aria-labelledby="video-title">
+    <section id="checkout" class="section video-section" aria-labelledby="video-title">
       <div class="wrap">
         <div class="section-head">
           <h2 id="video-title">{{ c.video.title }}</h2>
@@ -200,6 +213,39 @@ useSeoMeta({
   font-size: 14px;
 }
 
+.perf {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  background: var(--border);
+  list-style: none;
+}
+
+.perf li {
+  display: grid;
+  gap: 0.35rem;
+  padding: clamp(20px, 3vw, 32px);
+  background: var(--card);
+}
+
+.perf strong {
+  font: 800 clamp(36px, 5vw, 56px) / 1 var(--font-display);
+  letter-spacing: -0.035em;
+}
+
+.perf span {
+  color: var(--text-2);
+}
+
+.perf + .note {
+  margin-top: 1rem;
+}
+
 .video-section {
   padding-top: 0;
 }
@@ -332,6 +378,10 @@ useSeoMeta({
 @media (min-width: 700px) {
   .hard {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .perf {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
